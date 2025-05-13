@@ -6,10 +6,12 @@ const { ErrorHandler } = require("./controller/errorHandler.controller");
 
 const server = http.createServer((req, res) => {
   const { url } = req;
-  if (url === "/api/products") {
+  if (url === "/api/products" && req.method == "GET") {
     ProductController.get(req, res);
-  } else if (url.match(/\/api\/products\/[0-9]+/)) {
+  } else if (url.match(/\/api\/products\/[0-9]+/) && req.method == "GET") {
     ProductController.getById(req, res);
+  } else if (url === "/api/products" && req.method == "POST") {
+    ProductController.createProduct(req, res);
   } else {
     ErrorHandler.notFound(res);
   }

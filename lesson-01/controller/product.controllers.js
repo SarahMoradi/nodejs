@@ -28,9 +28,25 @@ async function getById(req, res) {
   }
 }
 
+async function createProduct(req, res) {
+  try {
+    await ProductModel.create({
+      id: Date.now(),
+      name: "Pencil",
+      price: 3.4,
+    });
+    res.writeHead(201, { "Content-Type": "application/json" });
+    res.write(JSON.stringify({ message: "product created successfully!" }));
+    res.end();
+  } catch (error) {
+    console.log(error);
+  }
+}
+
 const ProductController = {
   get,
   getById,
+  createProduct
 };
 
 module.exports = {
