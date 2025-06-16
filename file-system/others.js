@@ -4,6 +4,7 @@ fs.appendFile("write.txt", "\nnew data appended", "utf-8", (err) =>
   console.log(err)
 );
 
+// stops till happes
 fs.appendFileSync("write.txt", "\nnew data appended with sync", "utf-8");
 
 //delete file
