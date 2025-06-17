@@ -47,10 +47,38 @@ async function createProduct(req, res) {
   }
 }
 
+async function updateProduct(req, res) {
+  const id = req.url.split('/')[3]
+  try {
+    let body = ''
+    req.on('data', (chunk) => {
+      body += chunk.toString()
+    })
+
+    req.on('end', async () => {
+      const parsedBody = {...JSON.parse(body)}
+      const product = await ProductModel.findById(id)
+      if (!product) {
+        res.writeHead(404, {'Content-Type': 'application/json'})
+        res.write(JSON.stringify({message: 'not found!'}))
+        res.end()
+      } else {
+        const result = await ProductModel.update(id, parsedBody)
+        res.writeHead(200, {'Content-Type': 'application/json'})
+        res.write(JSON.stringify(result))
+        res.end()
+      }
+    })
+  } catch (error) {
+    console.log(error)
+  }
+}
+
 const ProductController = {
   get,
   getById,
   createProduct,
+  updateProduct,
 }
 
 module.exports = {
