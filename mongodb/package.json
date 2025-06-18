@@ -4,7 +4,7 @@
   "main": "delete.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon node insertMany.js"
+    "start": "nodemon node find.js"
   },
   "keywords": [],
   "author": "",

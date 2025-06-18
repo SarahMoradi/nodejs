@@ -18,13 +18,19 @@ async function connect() {
     
 
     // const anotherResult = await userCollection.deleteOne({firstName: "Sarah"})
+    
 
     // remove duplicate data or more same data with same firstName
     const anotherResult = await userCollection.deleteMany({"address.city": "Anytown"})
 
 
+    // find and remove the first one that find with n = 0 || n = 1
+    // صحت وجود یک داکیومنت را بسنجید
+    const anotherResultOne = await userCollection.findOneAndDelete({firstName: "Sarah"})
+
+
     // const result = await userCollection.deleteMany({firstName: "Ati"})
-    console.log("Deleted user:", result, anotherResult)
+    console.log("Deleted user:", result, anotherResult, anotherResultOne)
     
 }
 
