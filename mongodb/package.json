@@ -1,10 +1,10 @@
 {
   "name": "mongodb",
   "version": "1.0.0",
-  "main": "index.js",
+  "main": "delete.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon node server.js"
+    "start": "nodemon node insertMany.js"
   },
   "keywords": [],
   "author": "",
