@@ -5,6 +5,9 @@ const DB_name = "mongodb_nodejs"
 
 const client = new MongoClient(DB_url)
 
+// new MongoClient(DB_url).db(DB_name).collection("user")
+// new MongoClient(DATABASE_URL).db(DATABASE_NAME).collection(DATABASE_DOCUMENT)
+
 async function connect() {
   try {
     await client.connect()
