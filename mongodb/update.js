@@ -28,7 +28,7 @@ async function connect() {
 
     //UPDATE(DELETE)
     const removeFromArray = await userCollection.updateOne({_id: new ObjectId("6853175eff955ba58831dd0f")}, {
-        $pull: {age: ""}
+        $pull: {skills: "Node.js"}
     })
 
     //UPDATE(INCREMENT)
@@ -46,13 +46,24 @@ async function connect() {
         $rename: {userAge: 'age'}
     })
 
-    //UPDATE(UNSET)
+    //UPDATE(Remove Property)
     const unset = await userCollection.updateOne({_id: new ObjectId("6853175eff955ba58831dd0f")}, {
         $unset: {identity: '123456789'}
     })
 
+    //UPDATE(MULTIPLE)
+    const updateMany = await userCollection.updateMany({firstName: "Sarah"}, {
+        $set: {age: 20}
+    })
 
-    console.log("updated data: ", userCollection)
+    //UPDATE(MULTIPLE)
+    const findAndUpdate = await userCollection.findOneAndUpdate({firstName: "Sarah"}, {
+        $set: {age: 36}
+    })
+
+
+
+    console.log("updated data: ", findAndUpdate)
 
 
 }
